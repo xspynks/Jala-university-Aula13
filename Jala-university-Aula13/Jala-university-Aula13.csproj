@@ -11,4 +11,9 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="CurrencyPrice.cs" />
+      <Compile Remove="IDeposit.cs" />
+    </ItemGroup>
+
 </Project>

@@ -6,10 +6,13 @@ namespace Jala_university_Aula13.Controllers;
 public class ExchangeController : Controller
 {
     private readonly WalletService _walletService;
+    
+    private readonly AddMoneyService _addMoneyService;
 
-    public ExchangeController(WalletService walletService)
+    public ExchangeController(WalletService walletService, AddMoneyService addMoneyService)
     {
         _walletService = walletService;
+        _addMoneyService = addMoneyService;
     }
 
     [HttpGet]
@@ -28,8 +31,7 @@ public class ExchangeController : Controller
     [HttpPost]
     public IActionResult AddMoneyToWallet(decimal amount)
     {
-        _walletService.AddToBalance(amount);
-        return Ok();
+        _addMoneyService.AddToBalance(amount);
+        return Ok(amount);
     }
-
 }

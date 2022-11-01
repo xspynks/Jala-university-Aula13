@@ -1,13 +1,13 @@
 namespace Jala_university_Aula13;
 
-public class WalletService
+public class WalletService : CurrencyService
 {
-    public Dictionary<string, decimal> Currencies { get; set; } = new Dictionary<string, decimal>()
+    public void CurrencyService(string symbol, string code)
     {
-        {"USD", 0.18M},
-        {"CAD", 0.90M},
-        {"EUR", 0.20M},
-    };
+        Symbol = symbol;
+        Code = code;
+    }
+    
     public int Id { get; set; }
     public const string WalletCurrency = "BRL";
     
@@ -15,7 +15,7 @@ public class WalletService
     
     public Tuple<string, decimal> ExchangeMoney(string outgoingCurrency, decimal amount)
     {
-        if (!Currencies.TryGetValue(outgoingCurrency,out var to))
+        if (!Currencies.TryGetValue(outgoingCurrency, out var to))
         {
             throw new ArgumentException("Invalid currency");
         }
@@ -34,10 +34,4 @@ public class WalletService
         
         return new Tuple<string, decimal>(outgoingCurrency, total);
     }
-    
-    public void AddToBalance(decimal amount)
-    {
-        Balance += amount;
-    }
-
-  }
+}
